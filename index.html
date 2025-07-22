@@ -3,88 +3,231 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hub - G.voida</title>
+  <title>G.voida - Le Hub Ultime</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* CSS Variables for easy customization */
+    :root {
+      --primary-color: #7B2CBF; /* Deep Purple */
+      --secondary-color: #5A189A; /* Darker Purple */
+      --accent-color: #DDA0DD; /* Plum */
+      --text-color: #333;
+      --light-bg: #F0F2F5;
+      --card-bg: #FFFFFF;
+      --shadow-light: rgba(0, 0, 0, 0.08);
+      --shadow-medium: rgba(0, 0, 0, 0.15);
+      --border-radius-lg: 15px;
+    }
+
+    /* Global styles */
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
+      font-family: 'Poppins', sans-serif; /* Modern, clean font */
+      background: var(--light-bg);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
+      line-height: 1.6;
+      display: flex; /* Use flexbox for overall layout */
+      flex-direction: column;
+      min-height: 100vh; /* Ensure footer stays at the bottom */
     }
+
+    /* Header styling */
     header {
-      background: #4b0082;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient background */
       color: #fff;
-      padding: 1rem 0;
+      padding: 2.5rem 0; /* More generous padding */
       text-align: center;
+      box-shadow: 0 6px 15px var(--shadow-medium); /* Stronger shadow */
+      position: relative;
+      overflow: hidden; /* Hide overflowing pseudo-elements */
     }
+
+    header::before { /* Decorative overlay */
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.05);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-family: 'Montserrat', sans-serif; /* Different font for heading */
+      margin-bottom: 0.8rem;
+      font-size: 3rem; /* Larger, more impactful title */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+    }
+
+    /* Main content area */
     main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
+      flex-grow: 1; /* Allow main content to take available space */
+      padding: 3rem 2rem;
+      max-width: 750px; /* Slightly wider for more content */
+      margin: 2rem auto;
+      display: grid; /* Use CSS Grid for flexible card layout */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+      gap: 25px; /* Space between grid items */
     }
-    h2 {
-      color: #4b0082;
-    }
+
+    /* Link card styling */
     .link-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1rem;
-      margin: 1rem 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      box-shadow: 0 8px 20px var(--shadow-light);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid #eee; /* Subtle border */
     }
+
     .link-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+      box-shadow: 0 12px 25px var(--shadow-medium); /* Stronger shadow on hover */
     }
+
+    .link-card h2 {
+      color: var(--secondary-color);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem; /* Consistent heading size */
+      position: relative;
+      padding-bottom: 0.5rem; /* Space for underline effect */
+    }
+
+    .link-card h2::after { /* Underline effect for headings */
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px; /* Short underline */
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 5px;
+    }
+
     .link-card a {
       text-decoration: none;
-      color: #4b0082;
-      font-weight: bold;
+      color: var(--primary-color);
+      font-weight: 600; /* Slightly bolder */
+      font-size: 1.15rem; /* Larger link text */
+      padding: 0.6rem 0;
+      display: inline-block;
+      transition: color 0.2s ease;
     }
+
+    .link-card a:hover {
+      color: var(--accent-color); /* Change color on hover */
+      text-decoration: underline;
+    }
+
+    .link-card p {
+      font-size: 1.05rem;
+      color: #555;
+      margin-top: 0.75rem;
+    }
+
+    /* Specific style for Snapchat card, just text */
+    .link-card.snapchat p {
+      font-weight: 700; /* Very bold */
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+
+    /* Footer styling */
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 2rem;
       font-size: 0.9rem;
-      color: #777;
+      color: #888;
+      margin-top: 3rem;
+      border-top: 1px solid #e0e0e0;
+      background: #fdfdfd; /* Slightly different background */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      main {
+        padding: 2rem 1.5rem;
+        grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+      }
+      .link-card {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .link-card h2 {
+        font-size: 1.3rem;
+      }
+      .link-card a, .link-card p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🔗 Hub de G.voida</h1>
-    <p>Retrouve ici tous les liens importants</p>
+    <h1>Bienvenue sur le Hub de G.voida</h1>
+    <p>Votre portail vers tous mes projets et contacts essentiels.</p>
   </header>
 
   <main>
     <div class="link-card">
-      <h2>📱 Serveur Discord (contact prioritaire)</h2>
-      <a href="https://balou201.github.io/Serveur/" target="_blank">Voir le site du serveur</a>
+      <h2>📱 Serveur Discord</h2>
+      <p>Le moyen le plus rapide de me contacter et de rejoindre la communauté.</p>
+      <a href="https://balou201.github.io/Serveur/" target="_blank" rel="noopener noreferrer">Rejoindre le serveur Discord</a>
     </div>
 
     <div class="link-card">
       <h2>🔐 Compte Ami Officiel</h2>
-      <a href="https://balou201.github.io/Fiche_Ami_2.0/" target="_blank">Connexion au compte</a>
+      <p>Accédez à mon profil pour toutes les infos importantes.</p>
+      <a href="https://balou201.github.io/Fiche_Ami_2.0/" target="_blank" rel="noopener noreferrer">Voir mon Compte Ami</a>
     </div>
 
     <div class="link-card">
-      <h2>👤 Infos personnelles</h2>
-      <a href="https://balou201.github.io/G.voida/" target="_blank">Voir mon profil</a>
+      <h2>👤 Mon Profil Personnel</h2>
+      <p>Découvrez qui je suis et ce que je fais.</p>
+      <a href="https://balou201.github.io/G.voida/" target="_blank" rel="noopener noreferrer">Explorer mon Profil</a>
     </div>
 
     <div class="link-card">
-      <h2>🏅 Système de rangs</h2>
-      <a href="https://balou201.github.io/Rangs-d-ami-officiel-site/" target="_blank">Infos sur les rangs d'ami</a>
+      <h2>🏅 Système de Rangs</h2>
+      <p>Informations détaillées sur le système de rangs d'ami.</p>
+      <a href="https://balou201.github.io/Rangs-d-ami-officiel-site/" target="_blank" rel="noopener noreferrer">Comprendre les Rangs</a>
     </div>
 
-    <div class="link-card">
+    <div class="link-card snapchat">
       <h2>👻 Snapchat</h2>
-      <p>g.voida</p>
+      <p>Retrouvez-moi sur Snapchat pour des updates rapides.</p>
+      <p class="username">g.voida</p>
     </div>
   </main>
 
   <footer>
-    © 2025 G.voida • Tous droits réservés
+    <p>&copy; 2025 G.voida • Tous droits réservés.</p>
+    <p>Conçu avec 💜 pour vous.</p>
   </footer>
 </body>
 </html>
